@@ -1,26 +1,62 @@
 ﻿#include <iostream>
+#include <cmath>
 
 using namespace std;
 
+void sieve(int n)
+{
+	bool prime[100];
+
+	for (int i = 2; i <= n; i++)
+	{
+		prime[i] = true;
+	}
+
+	int limit = static_cast<int>(sqrt(n));
+
+	for (int i = 2; i <= limit; i++)
+	{
+		if (prime[i])
+		{
+			for (int j = i * i; j <= n; )
+			{
+				prime[j] = false;
+			}
+		}
+	}
+
+	for (int i = 2; i <= n; i++)
+	{
+		if (prime[i])
+		{
+			cout << i << " ";
+		}
+	}
+}
+
 int main()
 {
-#pragma region 유클리드 호제법
-	// 2개의 자연수 또는 정식의 최대 공약수를 구하는 방식으로
-	// 두 수가 서로 상대방 수를 나누어서 원하는 수를 얻어내는 알고리즘입니다,
+#pragma region 에라토스테네스의 체
 
-	int x = 2354;
-	int y = 3326;
-	int value = 0;
-
-	for (int i = 1; i <= x && i <= y; i++)
-	{
-		if (x % i == 0 && y % i == 0)
-		{
-			value = i;
-		}
-	} 
-
-	cout << "x, y의 최대 공약수 : " << value << endl;
+	// for (int i = 2; i <= 17; i++)
+	// {
+	// 	bool prime = true;
+	// 
+	// 	for (int j = 2; j < i; j++)
+	// 	{
+	// 		if (i % j == 0)
+	// 		{
+	// 			prime = false;
+	// 			break;
+	// 		}
+	// 	}
+	// 	
+	// 	if (prime)
+	// 	{
+	// 		cout << i << " ";
+	// 	}
+	// }
+	
 
 
 #pragma endregion
