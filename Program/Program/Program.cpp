@@ -2,37 +2,55 @@
 
 using namespace std;
 
-int max(int list[], int left, int right)
+bool Search(int list[], int size, int target)
 {
-	if (left == right) // 재귀 종료 조건
+	int start = 0;
+	int end = size - 1;
+
+	while (start <= end)
 	{
-		return list[left];
+		int pivot = (start + end) / 2;
+
+		if (list[pivot] == target) // 찾았을 때
+		{
+			return true;
+		}
+		else if (list[pivot] < target) // 왼쪽 탐색
+		{
+			start = pivot + 1;
+		}
+		else if (list[pivot] > target) // 오른쪽 탐색
+		{
+			end = pivot - 1;
+		}
 	}
-
-	int cut = (left + right) / 2; // 분할
-
-
+	return false; // 못찾음
 }
 
 int main()
 {
-#pragma region 분할 정복
-	// 주어진 2개 이상의 부분으로 문제를 나눈 뒤 각 부분
-	// 문제에 대한 답을 재귀로 호출하여 계산한 다음, 그
-	// 답으로부터 전체 문제의 답을 계산하는 알고리즘입니다.
+#pragma region 이분 탐색
+	// 탐색 범위를 반으로 나누어 찾는 값을 포함하는 범위를 
+	// 좁혀나가는 방식으로 동작하는 알고리즘입니다.
 
-	// 분할 (Divide) : 주어진 문제를 두 개 혹은 그 이상의 형식으로 나눈다.
-
-	// 정복 (Conquer) : 나누어진 문제를 재귀적으로 해결해서 나누어진 문제를
-	//					더이상 나누어서 문제가 필요없을 때까지 계속 분할합니다.
-
-	// 통합 (Combine) : 나누어서 해결한 문제들을 통합해서 원래 문제의 해답을 생성합니다.
-
-	int list[] = { 20, 15, 99, 1 };
+	int list[] = { 5, 6, 11, 13, 27, 55, 66, 92 };
 	int size = sizeof(list) / sizeof(list[0]);
+ 
+	int target = 27;
 
-	
+	for (int i = 0; i < size; i++)
+	{
+		cout << list[i] << " ";
+	}
 
+	if (Search(list, size, target))
+	{
+		cout << target << endl;
+	}
+	else
+	{
+		cout << "error" << endl;
+	}
 
 #pragma endregion
 
