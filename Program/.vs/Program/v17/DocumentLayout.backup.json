@@ -5,10 +5,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{514CEB90-CD43-4339-997D-FBA3261DB42C}|Program\\Program.vcxproj|C:\\Users\\tgahn\\Desktop\\GameClass5\\Program\\Program\\Program.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{514CEB90-CD43-4339-997D-FBA3261DB42C}|Program\\Program.vcxproj|solutionrelative:Program\\Program.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6D58018D-F69E-4670-9661-1C4A6985132D}|Class9th (Divide and Conquer)\\Class9th (Divide and Conquer).vcxproj|C:\\Users\\tgahn\\Desktop\\GameClass5\\Program\\Class9th (Divide and Conquer)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{6D58018D-F69E-4670-9661-1C4A6985132D}|Class9th (Divide and Conquer)\\Class9th (Divide and Conquer).vcxproj|solutionrelative:Class9th (Divide and Conquer)\\Source.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -28,23 +24,10 @@
               "RelativeDocumentMoniker": "Program\\Program.cpp",
               "ToolTip": "C:\\Users\\tgahn\\Desktop\\GameClass5\\Program\\Program\\Program.cpp",
               "RelativeToolTip": "Program\\Program.cpp",
-              "ViewState": "AgIAABIAAAAAAAAAAAAAACAAAAAhAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-12T09:12:04.709Z",
               "IsPinned": true,
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "Source.cpp",
-              "DocumentMoniker": "C:\\Users\\tgahn\\Desktop\\GameClass5\\Program\\Class9th (Divide and Conquer)\\Source.cpp",
-              "RelativeDocumentMoniker": "Class9th (Divide and Conquer)\\Source.cpp",
-              "ToolTip": "C:\\Users\\tgahn\\Desktop\\GameClass5\\Program\\Class9th (Divide and Conquer)\\Source.cpp",
-              "RelativeToolTip": "Class9th (Divide and Conquer)\\Source.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAADwvwAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-19T10:21:58.908Z",
               "EditorCaption": ""
             }
           ]
