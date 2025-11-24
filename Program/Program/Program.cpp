@@ -2,92 +2,59 @@
 
 using namespace std;
 
-void combine(int list[], int start, int middle, int end)
+int fibonacci(int n, int list[])
 {
-	int left = middle - start + 1;
-	int right = end - middle;
-	int pivot = left + right;
-
-	int* container = new int[pivot];
-	int count = 0;
-
-	int left_index = start;
-	int right_index = middle + 1;
-
-	while (left_index <= middle && right_index <= end)
+	if (n == 0)
 	{
-		if (list[left_index] <= list[right_index])
-		{
-			container[count++] = list[left_index++];
-		}
-		else
-		{
-			container[count++] = list[right_index++];
-		}
+		return 0;
+	}
+	else if (n == 1)
+	{
+		return 1;
+	}
+	
+	if (list[n] != 0)
+	{
+		return list[n];
 	}
 
-	while (left_index <= middle)
-	{
-		container[count++] = list[left_index++];
-	}
-	while (right_index <= end)
-	{
-		container[count++] = list[right_index++];
-	}
-
-	for (int i = 0; i < pivot; i++)
-	{
-		list[start + i] = container[i];
-	}
-
-	delete[] container;
+	return list[n] = fibonacci(n - 1, list) + fibonacci(n - 2, list);
 }
-
-void merge_sort(int list[], int start, int end)
-{
-	if (start < end) // 재귀 종료
-	{
-		int middle = (start + end) / 2;
-
-		merge_sort(list, start, middle);	// 분할
-		merge_sort(list, middle + 1, end);
-
-		combine(list, start, middle, end); // 병합
-	}
-}
-
-
 
 int main()
 {
-#pragma region 합병 정렬
-	// 하나의 리스트를 두 개의 균일한 크기로 분할하고 분할된
-	// 부분 리스트를 정렬한 다음, 두 개의 정렬된 부분 리스트를
-	// 합하여 전체가 정렬된 리스트가 되게 하는 방법입니다.
+#pragma region 동적 계획법
+	// 하나의 큰 문제를 여러 개의 작은 문제로 나누어서 그 결과를
+	// 저장하여 다시 큰 문제를 해결할 때 사용하는 알고리즘입니다.
 
-	// 1. 리스트의 길이가 0 또는 1이 되면 이미 정렬된 것으로 봅니다.
-	
-	// 2. 그렇지 않은 경우
+	// 겹치는 부분 문제 (Ovelapping Subprblems)
+	// 동일한 작은 문제들이 반복하여 나타나는 경우를 의미합니다.
 
-	// 2-1. 정렬되지 않은 리스트를 절반으로 잘라 비슷한 크기의
-	//		두 부분 리스트로 나눕니다.
+	// 최적 부분 구조 (Optimal Substructure)
+	// 부분 문제의 최적 결과 값을 사용하여 전체 문제의 최적의
+	// 결과를 낼 수 있는 경우를 의미합니다.
 
-	// 2-2. 각 부분 리스트를 재귀적으로 합병 정렬을 이용하여 정렬합니다.
+	// 메모이제이션 (Memoization)
+	// 프로그램이 동일한 계산을 반복해야할 때, 이전에 계산한 값을
+	// 메모리에 저장함으로써 동일한 계산을 반복 수행하는 작업을
+	// 제거하여 프로그램의 실행 속도를 향상시키는 방법입니다.
 
-	// 2-3. 두 부분 리스트를 다시 하나의 정렬된 리스트로 병합합니다.
+	int n = 45;
+	int* list = new int[n + 1];
 
-	int list[] = { 3, 5, 2, 7, 4, 1, 8, 6 };
-	int size = sizeof(list) / sizeof(list[0]);
-
-	merge_sort(list, 0, size - 1);
-
-	for (const auto& element : list)
+	for (int i = 0; i <= n; i++)
 	{
-		cout << element << " ";
+		list[i] = 0;
 	}
 
-#pragma endregion
+	for (int i = 0; i <= n; i++)
+	{
+		cout << fibonacci(i, list) << " ";
+	}
 
+	delete[] list;
+#pragma endregion
+	
 
 	return 0;
 }
