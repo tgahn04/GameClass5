@@ -13,16 +13,61 @@ class Graph
 private:
 	unordered_map<T, vector<T>> adjList;
 	unordered_map<T, int> degree;
+	unordered_set<T> vertices;
+	queue<T> queue;
+	vector<T> result;
 
 public:
 	void insert(const T& i, const T& j)
 	{
-		adjList[i].push_back(j); 
+		adjList[i].push_back(j);
 
 		degree[j]++;
+
+		vertices.insert(i);
+		vertices.insert(j);
+
+		if (degree.count(i) == false)
+		{
+			degree[i] = 0;
+		}
+	} 
+
+	void sort()
+	{
+		for (const T& node : vertices)
+		{
+			if (degree[node] == 0)
+			{
+				queue.push(node);
+			}
+		}
+
+		while (queue.empty() == false)
+		{
+			T current = queue.front();
+			queue.pop();
+
+			cout << current << " ";
+
+			for (const T& nextNode : adjList[current])
+			{
+				degree[nextNode]--;
+
+				if (degree[nextNode] == 0)
+				{
+					queue.push(nextNode);
+				}
+			}	
+		}
+
+		cout << endl;
+
+		if(result.size() != vertices.size())
+		{
+			cout << "a cycle has occurred" << endl;
+		}
 	}
-
-
 };
 
 
@@ -48,11 +93,16 @@ int main()
 
 	graph.insert(1, 2);
 	graph.insert(1, 5);
+
 	graph.insert(2, 3);
 	graph.insert(3, 4);
+
 	graph.insert(4, 6);
+
 	graph.insert(5, 6);
 	graph.insert(6, 7);
+
+	graph.sort();
 
 #pragma endregion
 	
