@@ -1,111 +1,58 @@
 ﻿#include <iostream>
-#include <unordered_map>
-#include <unordered_set>
 #include <vector>
-#include <queue>
 
 using namespace std;
 
+#define INFINITY 10000000
 
-template <typename T>
-class Graph
+
+class Dijkstra
 {
 private:
-	unordered_map<T, vector<T>> adjList;
-	unordered_map<T, int> degree;
-	unordered_set<T> vertices;
-	queue<T> queue;
-	vector<T> result;
+	vector<vector<int>> matrix;
 
 public:
-	void insert(const T& i, const T& j)
+	void resize(int node)
 	{
-		adjList[i].push_back(j);
+		int newSize = node + 1;
 
-		degree[j]++;
+		matrix.resize(newSize); // 행 확장
 
-		vertices.insert(i);
-		vertices.insert(j);
-
-		if (degree.count(i) == false)
+		for (int i = 0; i < newSize; i++)
 		{
-			degree[i] = 0;
-		}
-	} 
+			matrix[i].resize(); // 열 확장
 
-	void sort()
+			matrix[i][i] = 0; // 자기 루프 0
+		}
+	}
+
+	void insert(int i, int j, int weight)
 	{
-		for (const T& node : vertices)
-		{
-			if (degree[node] == 0)
-			{
-				queue.push(node);
-			}
-		}
-
-		while (queue.empty() == false)
-		{
-			T current = queue.front();
-			queue.pop();
-
-			cout << current << " ";
-
-			for (const T& nextNode : adjList[current])
-			{
-				degree[nextNode]--;
-
-				if (degree[nextNode] == 0)
-				{
-					queue.push(nextNode);
-				}
-			}	
-		}
-
-		cout << endl;
-
-		if(result.size() != vertices.size())
-		{
-			cout << "a cycle has occurred" << endl;
-		}
+	
 	}
 };
 
-
 int main()
 {
-#pragma region 위상 정렬
-	// 병합 그래프에 존재하는 각 정점드르이 선행 순서를 지키며,
-	// 모든 정점을 차례대로 진행하는 방식의 정렬입니다.
+#pragma region 
+	
 
-	// 사이클이 발생하는 경우 위상 정렬을 수행할 수 없습니다.
-
-	// DAG(Directed Acyclic Graph) : 사이클이 존재하지 않는 그래프
-
-	// 시간 복잡도 : O(V + E)
-
-	// 위상 정렬하는 방법
-	// 1. 진입 차수가 0인 정점을 Queue에 삽입합니다.
-	// 2. Queue에서 원소를 꺼내 연결된 모든 간선을 제거합니다.
-	// 3. 간선 제거 이후에 진입 차수가 0이 된 정점을 Queue에 삽입합니다.
-	// 4. Queue가 비어있을 때까지 2번 ~ 3번 작업을 반복적으로 수행합니다.
-
-	Graph<int> graph;
-
-	graph.insert(1, 2);
-	graph.insert(1, 5);
-
-	graph.insert(2, 3);
-	graph.insert(3, 4);
-
-	graph.insert(4, 6);
-
-	graph.insert(5, 6);
-	graph.insert(6, 7);
-
-	graph.sort();
 
 #pragma endregion
-	
 
 	return 0;
 }
+
+//		1	2	3	4	5	6
+//	   -----------------------
+//	1 |	0	2	5	1	I	I
+// 	  |
+//	2 |	2	0	3	2	I	I
+// 	  |
+//	3 |	5	3	0	3	1	5
+// 	  |
+//	4 |	1	2	3	0	1	I
+// 	  |
+//	5 |	I	I	1	1	0	2
+// 	  |
+//	6 |	I	I	5	I	2	0
