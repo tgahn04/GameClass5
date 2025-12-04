@@ -7,8 +7,8 @@ using namespace std;
 
 int main()
 {
-#pragma region
-	
+#pragma region 
+
 
 
 #pragma endregion
